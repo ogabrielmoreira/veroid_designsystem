@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #F5F6FA; -webkit-font-smoothing: antialiased; }
+  a { color: #2B3486; text-decoration: none; border-bottom: 1px solid rgba(43,52,134,.35); }
+  a:hover { color: #4756C9; border-bottom-color: #4756C9; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+
+<div style="font-family: 'Geist', system-ui, sans-serif; color: #10142B; padding: 0 clamp(20px, 5vw, 64px) 0; max-width: 1240px; margin: 0 auto;">
+
+  <header style="display: flex; flex-direction: column; gap: 18px; padding: clamp(48px, 7vw, 88px) 0 clamp(32px, 4vw, 48px); border-bottom: 1px solid #D7DAE8;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <img src="assets/veroid-logo.png" alt="Vero ID" style="display: block; height: 32px; width: auto;">
+        <span style="width: 1px; height: 20px; background: #D7DAE8;"></span>
+        
+      </div>
+      <button type="button" onClick="{{ toggleLang }}" style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #10142B; background: #FFFFFF; border: 1px solid #B6BBD0; padding: 10px 14px; border-radius: 999px; cursor: pointer; min-height: 40px;" style-hover="border-color: #232C6B; background: #F0F2FB;">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="M2.9 10h14.2"></path><path d="M10 2.8c1.9 2 2.9 4.5 2.9 7.2s-1 5.2-2.9 7.2c-1.9-2-2.9-4.5-2.9-7.2s1-5.2 2.9-7.2z"></path></svg>
+        {{ t.meta.langBtn }}
+      </button>
+    </div>
+    <h1 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: clamp(34px, 5vw, 52px); line-height: 1.02; letter-spacing: -.032em; font-weight: 700; color: #10142B; max-width: 24ch;">Design System</h1>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 13px; color: #3C4262;">
+      <span style="display: inline-flex; align-items: center; gap: 8px;">
+        
+        <span>{{ t.meta.byLabel }} <strong style="font-weight: 600; color: #10142B;">Gabriel Moreira</strong></span>
+      </span>
+      <span style="color: #B6BBD0;">·</span>
+      <span style="font-weight: 500; color: #2B3486;">@GabrielTechDesign</span>
+      <span style="color: #B6BBD0;">·</span>
+      <a href="https://www.linkedin.com/in/ogabriel-moreira/" target="_blank" rel="noopener">LinkedIn</a>
+      <span style="color: #B6BBD0;">·</span>
+      <a href="https://gabrielmoreira.tech" target="_blank" rel="noopener">gabrielmoreira.tech</a>
+    </div>
+    <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3C4262; max-width: 64ch; text-wrap: pretty;">{{ t.meta.lead }}</p>
+  </header>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.about.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.about.title }}</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.about.body }}</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+      <sc-for list="{{ t.about.cards }}" as="card" hint-placeholder-count="3">
+        <div style="display: flex; flex-direction: column; gap: 8px; padding: 20px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+          <div style="font-size: 13px; font-weight: 600; color: #2B3486;">{{ card.t }}</div>
+          <div style="font-size: 13px; line-height: 1.6; color: #3C4262;">{{ card.b }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 20px; background: #F0F2FB; border: 1px solid #BCC3EE; border-radius: 12px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #2B3486;">{{ t.about.stackLabel }}</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 7px;">
+        <span style="padding: 5px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #BCC3EE; font-size: 12px; color: #3C4262;">React 19 + Vite</span>
+        <span style="padding: 5px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #BCC3EE; font-size: 12px; color: #3C4262;">Tailwind + shadcn/ui</span>
+        <span style="padding: 5px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #BCC3EE; font-size: 12px; color: #3C4262;">CSS variables por tenant</span>
+        <span style="padding: 5px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #BCC3EE; font-size: 12px; color: #3C4262;">react-i18next PT-BR / EN</span>
+        <span style="padding: 5px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #BCC3EE; font-size: 12px; color: #3C4262;">Recharts</span>
+        <span style="padding: 5px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #BCC3EE; font-size: 12px; color: #3C4262;">MediaPipe Face Landmarker</span>
+        <span style="padding: 5px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #BCC3EE; font-size: 12px; color: #3C4262;">Cloudflare Worker</span>
+        <span style="padding: 5px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #BCC3EE; font-size: 12px; color: #3C4262;">Supabase + RLS</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.color.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.color.title }}</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.color.body }}</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;"><span style="font-size: 13px; font-weight: 600; color: #10142B;">brand.indigo</span><span style="font-size: 12px; color: #4E5573;">{{ t.color.brandNote }}</span></div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 6px;">
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #F0F2FB; border: 1px solid #D7DAE8;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">50<br>#F0F2FB</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #DDE1F6;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">100<br>#DDE1F6</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #BCC3EE;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">200<br>#BCC3EE</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #939EE2;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">300<br>#939EE2</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #6C79D4;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">400<br>#6C79D4</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #4756C9;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">500<br>#4756C9</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #3742A8;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">600<br>#3742A8</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #2B3486;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">700<br>#2B3486</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #232C6B;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">800<br>#232C6B</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #171D46;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">900<br>#171D46</div></div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;"><span style="font-size: 13px; font-weight: 600; color: #10142B;">neutral.slate</span><span style="font-size: 12px; color: #4E5573;">{{ t.color.neutralNote }}</span></div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 6px;">
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #F5F6FA; border: 1px solid #D7DAE8;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">50<br>#F5F6FA</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #EBEDF4;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">100<br>#EBEDF4</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #D7DAE8;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">200<br>#D7DAE8</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #B6BBD0;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">300<br>#B6BBD0</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #9198B5;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">400<br>#9198B5</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #6A7192;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">500<br>#6A7192</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #4E5573;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">600<br>#4E5573</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #3C4262;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">700<br>#3C4262</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #262C45;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">800<br>#262C45</div></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 62px; border-radius: 8px; background: #10142B;"></div><div style="font-size: 10px; line-height: 1.4; color: #4E5573;">900<br>#10142B</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px;">
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 10px; background: #E6F2EB; border: 1px solid rgba(15,122,74,.24);">
+        <div style="display: flex; align-items: center; gap: 8px; color: #0B5C37;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m6.8 10.2 2.2 2.2 4.2-4.4"></path></svg><span style="font-size: 13px; font-weight: 600;">{{ t.color.risk.lowLabel }}</span></div>
+        <div style="font-size: 12px; line-height: 1.5; color: #3F5A4C;">#0F7A4A · {{ t.color.risk.lowNote }}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 10px; background: #FBF0DF; border: 1px solid rgba(176,106,0,.28);">
+        <div style="display: flex; align-items: center; gap: 8px; color: #7A4900;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.4 17.2 15.6H2.8z"></path><path d="M10 8v3.2"></path><path d="M10 13.6h.01"></path></svg><span style="font-size: 13px; font-weight: 600;">{{ t.color.risk.reviewLabel }}</span></div>
+        <div style="font-size: 12px; line-height: 1.5; color: #6B5230;">#B06A00 · {{ t.color.risk.reviewNote }}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 10px; background: #FBE9E7; border: 1px solid rgba(179,38,30,.28);">
+        <div style="display: flex; align-items: center; gap: 8px; color: #8C1D18;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m7.6 7.6 4.8 4.8M12.4 7.6l-4.8 4.8"></path></svg><span style="font-size: 13px; font-weight: 600;">{{ t.color.risk.highLabel }}</span></div>
+        <div style="font-size: 12px; line-height: 1.5; color: #6E3B37;">#B3261E · {{ t.color.risk.highNote }}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 10px; background: #EEF0F2; border: 1px solid rgba(16,20,43,.2);">
+        <div style="display: flex; align-items: center; gap: 8px; color: #3D464F;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="M8.2 7.9a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.7-.8 1.2v.3"></path><path d="M10 14.1h.01"></path></svg><span style="font-size: 13px; font-weight: 600;">{{ t.color.risk.unknownLabel }}</span></div>
+        <div style="font-size: 12px; line-height: 1.5; color: #4E575F;">{{ t.color.risk.unknownNote }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.type.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.type.title }}</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.type.body }}</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px; overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; justify-content: space-between; padding: 22px 24px; border-bottom: 1px solid #EBEDF4;">
+        <div style="font-family: 'Libre Franklin', sans-serif; font-size: 44px; line-height: 1; letter-spacing: -.032em; font-weight: 700; color: #10142B;">{{ t.type.rows.display }}</div>
+        <div style="font-size: 12px; color: #4E5573; text-align: right;">Libre Franklin 700 · 44/44 · -0.032em<br>{{ t.type.use.display }}</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #EBEDF4;">
+        <div style="font-family: 'Libre Franklin', sans-serif; font-size: 32px; line-height: 1.1; letter-spacing: -.028em; font-weight: 700; color: #10142B;">{{ t.type.rows.h1 }}</div>
+        <div style="font-size: 12px; color: #4E5573; text-align: right;">Libre Franklin 700 · 32/35<br>{{ t.type.use.h1 }}</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #EBEDF4;">
+        <div style="font-family: 'Libre Franklin', sans-serif; font-size: 24px; line-height: 1.15; letter-spacing: -.022em; font-weight: 600; color: #10142B;">{{ t.type.rows.h2 }}</div>
+        <div style="font-size: 12px; color: #4E5573; text-align: right;">Libre Franklin 600 · 24/28<br>{{ t.type.use.h2 }}</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #EBEDF4;">
+        <div style="font-size: 19px; line-height: 1.3; font-weight: 600; color: #10142B;">{{ t.type.rows.h3 }}</div>
+        <div style="font-size: 12px; color: #4E5573; text-align: right;">Geist 600 · 19/25<br>{{ t.type.use.h3 }}</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #EBEDF4;">
+        <div style="font-size: 16px; line-height: 1.6; color: #3C4262; max-width: 44ch;">{{ t.type.rows.bodyLg }}</div>
+        <div style="font-size: 12px; color: #4E5573; text-align: right;">Geist 400 · 16/26<br>{{ t.type.use.bodyLg }}</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #EBEDF4;">
+        <div style="font-size: 14px; line-height: 1.55; color: #3C4262; max-width: 48ch;">{{ t.type.rows.body }}</div>
+        <div style="font-size: 12px; color: #4E5573; text-align: right;">Geist 400 · 14/22<br>{{ t.type.use.body }}</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #EBEDF4;">
+        <div style="font-size: 13px; line-height: 1.4; font-weight: 500; color: #10142B;">{{ t.type.rows.label }}</div>
+        <div style="font-size: 12px; color: #4E5573; text-align: right;">Geist 500 · 13/18<br>{{ t.type.use.label }}</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #EBEDF4;">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #6A7192;">{{ t.type.rows.overline }}</div>
+        <div style="font-size: 12px; color: #4E5573; text-align: right;">Geist 600 · 11/13 · 0.1em<br>{{ t.type.use.overline }}</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; justify-content: space-between; padding: 20px 24px;">
+        <div style="font-size: 30px; font-weight: 600; letter-spacing: -.02em; color: #232C6B; font-variant-numeric: tabular-nums;">2.860.417</div>
+        <div style="font-size: 12px; color: #4E5573; text-align: right;">Geist 600 · tabular-nums<br>{{ t.type.use.number }}</div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.type.fontsTitle }}</div>
+        <div style="font-size: 12px; line-height: 1.6; color: #4E5573; max-width: 72ch;">{{ t.type.fontsNote }}</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px;">
+        <sc-for list="{{ t.type.fonts }}" as="f" hint-placeholder-count="8">
+          <div style="display: flex; flex-direction: column; gap: 3px; padding: 12px 14px; border-radius: 8px; background: #F5F6FA; border: 1px solid #EBEDF4;">
+            <span style="font-size: 13px; font-weight: 500; color: #10142B;">{{ f.name }}</span>
+            <span style="font-size: 11px; line-height: 1.45; color: #4E5573;">{{ f.use }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.space.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.space.title }}</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 22px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.space.spaceTitle }}</div>
+        <div style="display: flex; align-items: flex-end; gap: 8px;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 4px; height: 4px; background: #4756C9;"></div><span style="font-size: 10px; color: #4E5573;">4</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 8px; height: 8px; background: #4756C9;"></div><span style="font-size: 10px; color: #4E5573;">8</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 12px; height: 12px; background: #4756C9;"></div><span style="font-size: 10px; color: #4E5573;">12</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 16px; height: 16px; background: #4756C9;"></div><span style="font-size: 10px; color: #4E5573;">16</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 24px; height: 24px; background: #4756C9;"></div><span style="font-size: 10px; color: #4E5573;">24</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 32px; height: 32px; background: #4756C9;"></div><span style="font-size: 10px; color: #4E5573;">32</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 48px; height: 48px; background: #4756C9;"></div><span style="font-size: 10px; color: #4E5573;">48</span></div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.space.spaceNote }}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 22px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.space.radiusTitle }}</div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 54px; height: 40px; background: #EBEDF4; border: 1px solid #B6BBD0; border-radius: 4px;"></div><span style="font-size: 10px; color: #4E5573;">sm 4</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 54px; height: 40px; background: #EBEDF4; border: 1px solid #B6BBD0; border-radius: 6px;"></div><span style="font-size: 10px; color: #4E5573;">md 6</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 54px; height: 40px; background: #EBEDF4; border: 1px solid #B6BBD0; border-radius: 12px;"></div><span style="font-size: 10px; color: #4E5573;">lg 12</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 54px; height: 40px; background: #EBEDF4; border: 1px solid #B6BBD0; border-radius: 999px;"></div><span style="font-size: 10px; color: #4E5573;">pill</span></div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.space.radiusNote }}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 22px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.space.elevTitle }}</div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <div style="width: 74px; height: 48px; border-radius: 8px; background: #FFF; border: 1px solid #D7DAE8;"></div>
+          <div style="width: 74px; height: 48px; border-radius: 8px; background: #FFF; box-shadow: 0 1px 2px rgba(16,20,43,.08);"></div>
+          <div style="width: 74px; height: 48px; border-radius: 8px; background: #FFF; box-shadow: 0 4px 14px rgba(16,20,43,.1);"></div>
+          <div style="width: 74px; height: 48px; border-radius: 8px; background: #FFF; box-shadow: 0 14px 36px rgba(16,20,43,.16);"></div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.space.elevNote }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.comp.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.comp.title }}</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.comp.btn.title }}</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF; background: #232C6B; border: none; padding: 11px 18px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="background: #3742A8;">{{ t.comp.btn.primary }}</button>
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #10142B; background: #FFFFFF; border: 1px solid #B6BBD0; padding: 11px 18px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="border-color: #232C6B;">{{ t.comp.btn.secondary }}</button>
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #2B3486; background: transparent; border: none; padding: 11px 12px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="background: #F0F2FB;">{{ t.comp.btn.ghost }}</button>
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF; background: #B3261E; border: none; padding: 11px 18px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="background: #8C1D18;">{{ t.comp.btn.destructive }}</button>
+          <button type="button" disabled="disabled" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #6A7192; background: #EBEDF4; border: 1px solid #D7DAE8; padding: 11px 18px; border-radius: 6px; cursor: not-allowed; min-height: 40px;">{{ t.comp.btn.disabled }}</button>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.comp.btn.note }}</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.comp.field.title }}</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="ds-phone" style="font-size: 13px; font-weight: 500; color: #10142B;">{{ t.comp.field.phone }}</label>
+          <input id="ds-phone" type="tel" autocomplete="tel" style="font-family: 'Geist', sans-serif; font-size: 14px; color: #10142B; padding: 11px 12px; border: 1px solid #B6BBD0; border-radius: 4px; background: #FFF; outline: none;" style-focus="border-color: #4756C9; box-shadow: 0 0 0 3px rgba(71,86,201,.18);">
+          <span style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.comp.field.phoneHint }}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="ds-cpf" style="font-size: 13px; font-weight: 500; color: #8C1D18;">{{ t.comp.field.cpf }}</label>
+          <input id="ds-cpf" type="text" aria-invalid="true" aria-describedby="ds-cpf-error" style="font-family: 'Geist', sans-serif; font-size: 14px; color: #10142B; padding: 11px 12px; border: 1px solid #B3261E; border-radius: 4px; background: #FFF; outline: none;">
+          <span id="ds-cpf-error" style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #8C1D18;"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m7.6 7.6 4.8 4.8M12.4 7.6l-4.8 4.8"></path></svg>{{ t.comp.field.cpfError }}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; background: #F0F2FB; border: 1px solid #BCC3EE; border-radius: 8px;">
+          <label style="display: flex; gap: 10px; align-items: flex-start; cursor: pointer;">
+            <input type="checkbox" checked="" style="margin: 2px 0 0; width: 18px; height: 18px; accent-color: #232C6B; flex: none;">
+            <span style="font-size: 13px; line-height: 1.5; color: #3C4262;">{{ t.comp.field.consentBio }} <strong style="font-weight: 600; color: #10142B;">{{ t.comp.field.required }}</strong></span>
+          </label>
+          <label style="display: flex; gap: 10px; align-items: flex-start; cursor: pointer;">
+            <input type="checkbox" style="margin: 2px 0 0; width: 18px; height: 18px; accent-color: #232C6B; flex: none;">
+            <span style="font-size: 13px; line-height: 1.5; color: #3C4262;">{{ t.comp.field.consentMkt }} <span style="color: #4E5573;">{{ t.comp.field.optional }}</span></span>
+          </label>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.comp.chip.title }}</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: #E6F2EB; border: 1px solid rgba(15,122,74,.28); font-size: 12px; font-weight: 500; color: #0B5C37;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m6.8 10.2 2.2 2.2 4.2-4.4"></path></svg>{{ t.comp.chip.low }}</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: #FBF0DF; border: 1px solid rgba(176,106,0,.28); font-size: 12px; font-weight: 500; color: #7A4900;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.4 17.2 15.6H2.8z"></path><path d="M10 8v3.2"></path><path d="M10 13.6h.01"></path></svg>{{ t.comp.chip.review }}</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: #FBE9E7; border: 1px solid rgba(179,38,30,.28); font-size: 12px; font-weight: 500; color: #8C1D18;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m7.6 7.6 4.8 4.8M12.4 7.6l-4.8 4.8"></path></svg>{{ t.comp.chip.high }}</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: #EEF0F2; border: 1px solid rgba(16,20,43,.2); font-size: 12px; font-weight: 500; color: #3D464F;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="M8.2 7.9a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.7-.8 1.2v.3"></path><path d="M10 14.1h.01"></path></svg>{{ t.comp.chip.unknown }}</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: #F0F2FB; border: 1px solid #BCC3EE; font-size: 12px; font-weight: 500; color: #2B3486;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.8 10S5.6 5.6 10 5.6 17.2 10 17.2 10 14.4 14.4 10 14.4 2.8 10 2.8 10z"></path><circle cx="10" cy="10" r="2.2"></circle></svg>{{ t.comp.chip.opened }}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #4E5573;">{{ t.comp.chip.scoreLabel }}</span><span style="font-size: 13px; font-weight: 600; color: #8C1D18; font-variant-numeric: tabular-nums;">84 / 100</span></div>
+          <div style="position: relative; height: 8px; border-radius: 999px; background: linear-gradient(90deg, #0F7A4A 0 30%, #B06A00 30% 70%, #B3261E 70% 100%);">
+            <div style="position: absolute; top: -4px; left: 84%; width: 3px; height: 16px; border-radius: 2px; background: #10142B;"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 10px; color: #4E5573;"><span>0 {{ t.comp.chip.auto }}</span><span>30</span><span>70</span><span>100</span></div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.comp.chip.note }}</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.comp.num.title }}</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 10px; background: #F5F6FA; border: 1px solid #EBEDF4;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #4E5573;">{{ t.comp.num.checks }}</span>
+            <span style="font-size: 28px; font-weight: 600; letter-spacing: -.02em; color: #10142B; font-variant-numeric: tabular-nums;">1.284</span>
+            <span style="font-size: 12px; color: #0B5C37;">{{ t.comp.num.checksDelta }}</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 10px; background: #F5F6FA; border: 1px solid #EBEDF4;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #4E5573;">{{ t.comp.num.losses }}</span>
+            <span style="font-size: 28px; font-weight: 600; letter-spacing: -.02em; color: #232C6B; font-variant-numeric: tabular-nums;">R$ 418 mil</span>
+            <span style="font-size: 12px; color: #4E5573;">{{ t.comp.num.lossesNote }}</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #4E5573;">{{ t.comp.num.funnel }}</span>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 10px;"><div style="height: 22px; width: 100%; border-radius: 4px; background: #232C6B;"></div><span style="flex: none; font-size: 12px; color: #4E5573; width: 124px;">{{ t.comp.num.step1 }}</span></div>
+            <div style="display: flex; align-items: center; gap: 10px;"><div style="height: 22px; width: 82%; border-radius: 4px; background: #3742A8;"></div><span style="flex: none; font-size: 12px; color: #4E5573; width: 124px;">{{ t.comp.num.step2 }}</span></div>
+            <div style="display: flex; align-items: center; gap: 10px;"><div style="height: 22px; width: 61%; border-radius: 4px; background: #4756C9; outline: 2px dashed #B06A00; outline-offset: 2px;"></div><span style="flex: none; font-size: 12px; font-weight: 500; color: #7A4900; width: 124px;">{{ t.comp.num.step3 }}</span></div>
+            <div style="display: flex; align-items: center; gap: 10px;"><div style="height: 22px; width: 56%; border-radius: 4px; background: #6C79D4;"></div><span style="flex: none; font-size: 12px; color: #4E5573; width: 124px;">{{ t.comp.num.step4 }}</span></div>
+          </div>
+          <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.comp.num.note }}</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.comp.alert.title }}</div>
+        <div style="display: flex; gap: 11px; padding: 14px; border-radius: 8px; background: #F0F2FB; border: 1px solid #BCC3EE;">
+          <span style="flex: none; color: #2B3486; margin-top: 1px;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="M10 9.2v4.4"></path><path d="M10 6.5h.01"></path></svg></span>
+          <div style="font-size: 13px; line-height: 1.55; color: #3C4262;"><strong style="font-weight: 600; color: #10142B;">{{ t.comp.alert.demoTitle }}</strong> {{ t.comp.alert.demoBody }}</div>
+        </div>
+        <div style="display: flex; gap: 11px; padding: 14px; border-radius: 8px; background: #FBF0DF; border: 1px solid rgba(176,106,0,.28);">
+          <span style="flex: none; color: #7A4900; margin-top: 1px;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.4 17.2 15.6H2.8z"></path><path d="M10 8v3.2"></path><path d="M10 13.6h.01"></path></svg></span>
+          <div style="font-size: 13px; line-height: 1.55; color: #6B5230;"><strong style="font-weight: 600; color: #7A4900;">{{ t.comp.alert.capTitle }}</strong> {{ t.comp.alert.capBody }}</div>
+        </div>
+        <div style="display: flex; gap: 11px; padding: 14px; border-radius: 8px; background: #EEF0F2; border: 1px solid rgba(16,20,43,.16);">
+          <span style="flex: none; color: #3D464F; margin-top: 1px;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3 16 5.2v4c0 3.3-2.4 5.7-6 6.9-3.6-1.2-6-3.6-6-6.9v-4z"></path></svg></span>
+          <div style="font-size: 13px; line-height: 1.55; color: #3D464F;">{{ t.comp.alert.honesty }}</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.comp.empty.title }}</div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 26px 18px; border-radius: 10px; border: 1px dashed #B6BBD0; background: #F5F6FA; text-align: center;">
+          <span style="color: #6C79D4;"><svg width="30" height="30" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="7.4" r="2.9"></circle><path d="M4.4 16.4c.7-2.6 2.9-4.1 5.6-4.1s4.9 1.5 5.6 4.1"></path></svg></span>
+          <div style="font-size: 14px; font-weight: 500; color: #10142B;">{{ t.comp.empty.head }}</div>
+          <div style="font-size: 12px; line-height: 1.5; color: #4E5573; max-width: 36ch;">{{ t.comp.empty.body }}</div>
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF; background: #232C6B; border: none; padding: 11px 16px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="background: #3742A8;">{{ t.comp.empty.cta }}</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="height: 12px; width: 70%; border-radius: 4px; background: #EBEDF4;"></div>
+          <div style="height: 12px; width: 92%; border-radius: 4px; background: #EBEDF4;"></div>
+          <div style="height: 12px; width: 48%; border-radius: 4px; background: #EBEDF4;"></div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.comp.empty.note }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.icons.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.icons.title }}</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.icons.body }}</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.icons.setTitle }}</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 14px; color: #3C4262;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m6.8 10.2 2.2 2.2 4.2-4.4"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.approved }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.4 17.2 15.6H2.8z"></path><path d="M10 8v3.2"></path><path d="M10 13.6h.01"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.review }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m7.6 7.6 4.8 4.8M12.4 7.6l-4.8 4.8"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.rejected }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="M8.2 7.9a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.7-.8 1.2v.3"></path><path d="M10 14.1h.01"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.unknown }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="M10 6.2V10l2.6 1.6"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.pending }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.4" width="14.4" height="8.4" rx="2"></rect><circle cx="10" cy="10.6" r="2.6"></circle><path d="M7.4 6.4 8.4 4.6h3.2l1 1.8"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.capture }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3 16 5.2v4c0 3.3-2.4 5.7-6 6.9-3.6-1.2-6-3.6-6-6.9v-4z"></path><path d="m7.8 9.9 1.7 1.7 3-3.2"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.liveness }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="7.4" r="2.9"></circle><path d="M4.4 16.4c.7-2.6 2.9-4.1 5.6-4.1s4.9 1.5 5.6 4.1"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.subject }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="5"></circle><path d="m12.7 12.7 3.9 3.9"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.search }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 5.4h13.2l-5 5.8v4.4l-3.2-1.8v-2.6z"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.filter }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.8 10S5.6 5.6 10 5.6 17.2 10 17.2 10 14.4 14.4 10 14.4 2.8 10 2.8 10z"></path><circle cx="10" cy="10" r="2.2"></circle></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.evidence }}</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.6v8.2"></path><path d="m7 9 3 3 3-3"></path><path d="M4 16.4h12"></path></svg><span style="font-size: 10px; color: #4E5573; text-align: center;">{{ t.icons.l.export }}</span></div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.icons.setNote }}</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.icons.focusTitle }}</div>
+        <div style="font-size: 12px; line-height: 1.55; color: #4E5573;">{{ t.icons.focusNote }}</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF; background: #232C6B; border: none; padding: 11px 18px; border-radius: 6px; cursor: pointer; min-height: 40px; outline: 2px solid #4756C9; outline-offset: 2px;">{{ t.comp.btn.primary }}</button>
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #10142B; background: #FFFFFF; border: 1px solid #B6BBD0; padding: 11px 18px; border-radius: 6px; cursor: pointer; min-height: 40px; outline: 2px solid #4756C9; outline-offset: 2px;">{{ t.comp.btn.secondary }}</button>
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF; background: #B3261E; border: none; padding: 11px 18px; border-radius: 6px; cursor: pointer; min-height: 40px; outline: 2px solid #10142B; outline-offset: 2px;">{{ t.comp.btn.destructive }}</button>
+          <button type="button" aria-label="{{ t.icons.l.filter }}" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #3C4262; background: #FFFFFF; border: 1px solid #B6BBD0; border-radius: 6px; cursor: pointer; outline: 2px solid #4756C9; outline-offset: 2px;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 5.4h13.2l-5 5.8v4.4l-3.2-1.8v-2.6z"></path></svg></button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; background: #F5F6FA; border: 1px solid #EBEDF4; border-radius: 8px;">
+          <div style="font-size: 12px; font-weight: 600; color: #10142B;">{{ t.icons.tabTitle }}</div>
+          <div style="font-size: 12px; line-height: 1.6; color: #4E5573;">{{ t.icons.tabBody }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.nav.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.nav.title }}</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.nav.body }}</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px; overflow: hidden;">
+      <nav style="flex: none; width: 232px; display: flex; flex-direction: column; gap: 2px; padding: 16px 12px; background: #F5F6FA; border-right: 1px solid #D7DAE8;">
+        <div style="display: flex; align-items: center; gap: 9px; padding: 6px 10px 14px;">
+          <div style="width: 22px; height: 22px; border-radius: 6px; background: #232C6B; flex: none;"></div>
+          <span style="font-size: 13px; font-weight: 600; color: #10142B;">Acme Bank</span>
+        </div>
+        <a href="#queue" aria-current="page" style="display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: #FFFFFF; background: #232C6B; border-bottom: none; box-shadow: inset 3px 0 0 #939EE2;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="M10 6.2V10l2.6 1.6"></path></svg>{{ t.nav.items.queue }}</a>
+        <a href="#subjects" style="display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 6px; font-size: 13px; color: #3C4262; border-bottom: none;" style-hover="background: #EBEDF4;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="7.4" r="2.9"></circle><path d="M4.4 16.4c.7-2.6 2.9-4.1 5.6-4.1s4.9 1.5 5.6 4.1"></path></svg>{{ t.nav.items.subjects }}</a>
+        <a href="#policies" style="display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 6px; font-size: 13px; color: #3C4262; border-bottom: none;" style-hover="background: #EBEDF4;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3 16 5.2v4c0 3.3-2.4 5.7-6 6.9-3.6-1.2-6-3.6-6-6.9v-4z"></path></svg>{{ t.nav.items.policies }}</a>
+        <a href="#reports" style="display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 6px; font-size: 13px; color: #3C4262; border-bottom: none;" style-hover="background: #EBEDF4;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.6v8.2"></path><path d="m7 9 3 3 3-3"></path><path d="M4 16.4h12"></path></svg>{{ t.nav.items.reports }}</a>
+        <div style="margin-top: 10px; padding: 10px; border-top: 1px solid #D7DAE8; font-size: 11px; line-height: 1.5; color: #4E5573;">{{ t.nav.navNote }}</div>
+      </nav>
+
+      <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid #EBEDF4;">
+          <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #4E5573;"><span>{{ t.nav.crumb }}</span><span style="color: #B6BBD0;">/</span><span style="color: #10142B; font-weight: 500;">{{ t.nav.items.queue }}</span></div>
+            <div style="font-family: 'Libre Franklin', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -.02em; color: #10142B;">{{ t.nav.pageTitle }}</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 0 10px; height: 40px; border: 1px solid #B6BBD0; border-radius: 6px; color: #4E5573;">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="5"></circle><path d="m12.7 12.7 3.9 3.9"></path></svg>
+            <span style="font-size: 13px;">{{ t.nav.search }}</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 20px; padding: 0 20px; border-bottom: 1px solid #EBEDF4;">
+          <span style="padding: 11px 0; font-size: 13px; font-weight: 600; color: #232C6B; box-shadow: inset 0 -2px 0 #232C6B;">{{ t.nav.tabs.pending }}</span>
+          <span style="padding: 11px 0; font-size: 13px; color: #4E5573;">{{ t.nav.tabs.today }}</span>
+          <span style="padding: 11px 0; font-size: 13px; color: #4E5573;">{{ t.nav.tabs.rejected }}</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) 84px 130px; align-items: center; gap: 12px; padding: 10px 20px; background: #F5F6FA; border-bottom: 1px solid #D7DAE8; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #4E5573;">
+          <span>{{ t.nav.cols.subject }}</span>
+          <span>{{ t.nav.cols.received }}</span>
+          <span style="display: inline-flex; align-items: center; gap: 4px; justify-content: flex-end;">{{ t.nav.cols.score }}<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 8.4 4 4 4-4"></path></svg></span>
+          <span>{{ t.nav.cols.state }}</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) 84px 130px; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid #EBEDF4;" style-hover="background: #F5F6FA;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 500; color: #10142B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Marina Ribeiro</span><span style="font-size: 12px; color: #4E5573;">CPF ***.418-02</span></div>
+          <span style="font-size: 13px; color: #4E5573;">{{ t.nav.rows.r1time }}</span>
+          <span style="font-size: 15px; font-weight: 600; color: #8C1D18; text-align: right; font-variant-numeric: tabular-nums;">84</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: #8C1D18;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m7.6 7.6 4.8 4.8M12.4 7.6l-4.8 4.8"></path></svg>{{ t.nav.rows.r1state }}</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) 84px 130px; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid #EBEDF4; background: #F5F6FA;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 500; color: #10142B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Anna-Lena Wiesenberger-Schmidt</span><span style="font-size: 12px; color: #4E5573;">CPF ***.093-71</span></div>
+          <span style="font-size: 13px; color: #4E5573;">{{ t.nav.rows.r2time }}</span>
+          <span style="font-size: 15px; font-weight: 600; color: #7A4900; text-align: right; font-variant-numeric: tabular-nums;">58</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: #7A4900;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.4 17.2 15.6H2.8z"></path><path d="M10 8v3.2"></path><path d="M10 13.6h.01"></path></svg>{{ t.nav.rows.r2state }}</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) 84px 130px; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid #EBEDF4;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 500; color: #10142B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">José Carvalho</span><span style="font-size: 12px; color: #4E5573;">CPF ***.702-55</span></div>
+          <span style="font-size: 13px; color: #4E5573;">{{ t.nav.rows.r3time }}</span>
+          <span style="font-size: 15px; font-weight: 600; color: #0B5C37; text-align: right; font-variant-numeric: tabular-nums;">12</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: #0B5C37;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m6.8 10.2 2.2 2.2 4.2-4.4"></path></svg>{{ t.nav.rows.r3state }}</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px;">
+          <span style="font-size: 12px; color: #4E5573;">{{ t.nav.pager }}</span>
+          <div style="display: flex; gap: 6px;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; padding: 0 8px; border-radius: 6px; background: #232C6B; color: #FFF; font-size: 12px; font-weight: 600;">1</span>
+            <span style="display: inline-flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; padding: 0 8px; border-radius: 6px; border: 1px solid #D7DAE8; color: #3C4262; font-size: 12px;">2</span>
+            <span style="display: inline-flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; padding: 0 8px; border-radius: 6px; border: 1px solid #D7DAE8; color: #3C4262; font-size: 12px;">3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size: 12px; line-height: 1.55; color: #4E5573; max-width: 84ch;">{{ t.nav.note }}</div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.over.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.over.title }}</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.over.body }}</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.over.ddTitle }}</div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; padding: 10px 12px; border: 1px solid #232C6B; border-radius: 6px; font-size: 13px; font-weight: 500; color: #10142B; min-height: 40px;">{{ t.over.ddTrigger }}<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 8.4 4 4 4-4"></path></svg></div>
+          <div style="width: 240px; max-width: 100%; padding: 6px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 8px; box-shadow: 0 4px 14px rgba(16,20,43,.1);">
+            <div style="display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 6px; font-size: 13px; color: #3C4262; background: #F0F2FB;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.8 10S5.6 5.6 10 5.6 17.2 10 17.2 10 14.4 14.4 10 14.4 2.8 10 2.8 10z"></path><circle cx="10" cy="10" r="2.2"></circle></svg>{{ t.over.ddEvidence }}</div>
+            <div style="display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 6px; font-size: 13px; color: #3C4262;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.6v8.2"></path><path d="m7 9 3 3 3-3"></path><path d="M4 16.4h12"></path></svg>{{ t.over.ddExport }}</div>
+            <div style="height: 1px; margin: 5px 4px; background: #EBEDF4;"></div>
+            <div style="display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 6px; font-size: 13px; color: #8C1D18;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m7.6 7.6 4.8 4.8M12.4 7.6l-4.8 4.8"></path></svg>{{ t.over.ddReject }}</div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 13px; font-weight: 600;">{{ t.over.tipTitle }}</div>
+          <div style="display: inline-flex; align-self: flex-start; max-width: 280px; padding: 9px 11px; border-radius: 6px; background: #10142B; color: #DDE1F6; font-size: 12px; line-height: 1.5; box-shadow: 0 4px 14px rgba(16,20,43,.1);">{{ t.over.tipBody }}</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.over.toastTitle }}</div>
+        <div style="display: flex; align-items: flex-start; gap: 11px; padding: 14px; border-radius: 8px; background: #FFFFFF; border: 1px solid #D7DAE8; box-shadow: 0 4px 14px rgba(16,20,43,.1);">
+          <span style="flex: none; color: #0F7A4A; margin-top: 1px;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m6.8 10.2 2.2 2.2 4.2-4.4"></path></svg></span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+            <span style="font-size: 13px; font-weight: 500; color: #10142B;">{{ t.over.toast1Title }}</span>
+            <span style="font-size: 12px; color: #4E5573;">{{ t.over.toast1Body }}</span>
+          </div>
+          <span style="flex: none; font-size: 12px; font-weight: 500; color: #2B3486;">{{ t.over.toast1Action }}</span>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 11px; padding: 14px; border-radius: 8px; background: #FFFFFF; border: 1px solid rgba(179,38,30,.4); box-shadow: 0 4px 14px rgba(16,20,43,.1);">
+          <span style="flex: none; color: #B3261E; margin-top: 1px;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m7.6 7.6 4.8 4.8M12.4 7.6l-4.8 4.8"></path></svg></span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+            <span style="font-size: 13px; font-weight: 500; color: #10142B;">{{ t.over.toast2Title }}</span>
+            <span style="font-size: 12px; color: #4E5573;">{{ t.over.toast2Body }}</span>
+          </div>
+          <span style="flex: none; font-size: 12px; font-weight: 500; color: #2B3486;">{{ t.over.toast2Action }}</span>
+        </div>
+        <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.over.toastNote }}</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.over.modalTitle }}</div>
+        <div style="padding: 18px; border-radius: 10px; background: rgba(16,20,43,.48);">
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 22px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 14px 36px rgba(16,20,43,.16);">
+            <div style="display: flex; align-items: flex-start; gap: 11px;">
+              <span style="flex: none; color: #B3261E; margin-top: 2px;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.4 17.2 15.6H2.8z"></path><path d="M10 8v3.2"></path><path d="M10 13.6h.01"></path></svg></span>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="font-family: 'Libre Franklin', sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -.02em; color: #10142B;">{{ t.over.modalHead }}</div>
+                <div style="font-size: 13px; line-height: 1.55; color: #4E5573;">{{ t.over.modalBody }}</div>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 13px; font-weight: 500; color: #10142B;">{{ t.over.modalField }}</label>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 11px 12px; border: 1px solid #B6BBD0; border-radius: 4px; font-size: 14px; color: #4E5573; min-height: 40px;">{{ t.over.modalSelect }}<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 8.4 4 4 4-4"></path></svg></div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;">
+              <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #10142B; background: #FFFFFF; border: 1px solid #B6BBD0; padding: 11px 18px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="border-color: #232C6B;">{{ t.over.modalKeep }}</button>
+              <button type="button" disabled="disabled" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #6A7192; background: #EBEDF4; border: 1px solid #D7DAE8; padding: 11px 18px; border-radius: 6px; cursor: not-allowed; min-height: 40px;">{{ t.over.modalReject }}</button>
+            </div>
+            <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.over.modalNote }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.states.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.states.title }}</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.states.body }}</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.states.errTitle }}</div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px; border-radius: 10px; background: #FBE9E7; border: 1px solid rgba(179,38,30,.28);">
+          <span style="color: #B3261E;"><svg width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m7.6 7.6 4.8 4.8M12.4 7.6l-4.8 4.8"></path></svg></span>
+          <div style="font-size: 14px; font-weight: 600; color: #8C1D18;">{{ t.states.errHead }}</div>
+          <div style="font-size: 12px; line-height: 1.55; color: #6E3B37;">{{ t.states.errBody }}</div>
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF; background: #B3261E; border: none; padding: 11px 16px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="background: #8C1D18;">{{ t.states.errCta }}</button>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.states.permTitle }}</div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px; border-radius: 10px; background: #FBF0DF; border: 1px solid rgba(176,106,0,.28);">
+          <span style="color: #B06A00;"><svg width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.4" width="14.4" height="8.4" rx="2"></rect><circle cx="10" cy="10.6" r="2.6"></circle><path d="M7.4 6.4 8.4 4.6h3.2l1 1.8"></path><path d="m3.4 3.4 13.2 13.2"></path></svg></span>
+          <div style="font-size: 16px; font-weight: 600; color: #7A4900;">{{ t.states.permHead }}</div>
+          <div style="font-size: 14px; line-height: 1.6; color: #6B5230;">{{ t.states.permBody }}</div>
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 500; color: #FFFFFF; background: #232C6B; border: none; padding: 13px 18px; border-radius: 6px; cursor: pointer; min-height: 44px;" style-hover="background: #3742A8;">{{ t.states.permCta }}</button>
+          <div style="font-size: 13px; line-height: 1.5; color: #6B5230;">{{ t.states.permAltBefore }} <a href="#agent">{{ t.states.permAltLink }}</a> {{ t.states.permAltAfter }}</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.states.partTitle }}</div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 9px; padding: 11px 13px; border-radius: 8px; background: #EEF0F2; border: 1px solid rgba(16,20,43,.16); font-size: 12px; line-height: 1.5; color: #3D464F;">
+            <span style="flex: none; color: #3D464F;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="M10 6.2V10l2.6 1.6"></path></svg></span>
+            <span>{{ t.states.partNote }}</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px;">
+            <div style="display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 10px; background: #F5F6FA; border: 1px solid #EBEDF4; opacity: .68;">
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #4E5573;">{{ t.comp.num.checks }}</span>
+              <span style="font-size: 24px; font-weight: 600; letter-spacing: -.02em; color: #10142B; font-variant-numeric: tabular-nums;">1.284</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 10px; background: #F5F6FA; border: 1px solid #EBEDF4;">
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #4E5573;">{{ t.states.partMetric }}</span>
+              <span style="font-size: 24px; font-weight: 600; letter-spacing: -.02em; color: #4E5573; font-variant-numeric: tabular-nums;">—</span>
+            </div>
+          </div>
+          <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ t.states.partFoot }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.motion.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.motion.title }}</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.motion.mTitle }}</div>
+        <div style="display: flex; flex-direction: column;">
+          <sc-for list="{{ t.motion.rows }}" as="row" hint-placeholder-count="4">
+            <div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #EBEDF4; font-size: 12.5px; color: #3C4262;"><span style="font-weight: 500;">{{ row.k }}</span><span style="color: #4E5573; text-align: right;">{{ row.v }}</span></div>
+          </sc-for>
+        </div>
+        <div style="font-size: 12px; line-height: 1.6; color: #4E5573;">{{ t.motion.mNote }}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+        <div style="font-size: 13px; font-weight: 600;">{{ t.motion.bpTitle }}</div>
+        <div style="display: flex; flex-direction: column;">
+          <sc-for list="{{ t.motion.bps }}" as="bp" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: 78px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid #EBEDF4; font-size: 12.5px;"><span style="font-weight: 500; color: #10142B;">{{ bp.k }}</span><span style="color: #4E5573;">{{ bp.v }}</span></div>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; height: 44px;">
+          <div style="background: #DDE1F6; border-radius: 3px;"></div><div style="background: #DDE1F6; border-radius: 3px;"></div><div style="background: #DDE1F6; border-radius: 3px;"></div><div style="background: #DDE1F6; border-radius: 3px;"></div><div style="background: #BCC3EE; border-radius: 3px;"></div><div style="background: #BCC3EE; border-radius: 3px;"></div><div style="background: #BCC3EE; border-radius: 3px;"></div><div style="background: #BCC3EE; border-radius: 3px;"></div><div style="background: #939EE2; border-radius: 3px;"></div><div style="background: #939EE2; border-radius: 3px;"></div><div style="background: #939EE2; border-radius: 3px;"></div><div style="background: #939EE2; border-radius: 3px;"></div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.6; color: #4E5573;">{{ t.motion.bpNote }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.voice.kicker }}</div>
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.voice.title }}</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.voice.body }}</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px;">
+      <sc-for list="{{ t.voice.pairs }}" as="p" hint-placeholder-count="3">
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 5px;"><span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #0B5C37;">{{ t.voice.doLabel }}</span><span style="font-size: 14px; line-height: 1.5; color: #10142B;">{{ p.good }}</span></div>
+          <div style="display: flex; flex-direction: column; gap: 5px;"><span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #8C1D18;">{{ t.voice.dontLabel }}</span><span style="font-size: 14px; line-height: 1.5; color: #4E5573; text-decoration: line-through;">{{ p.bad }}</span></div>
+          <div style="font-size: 12px; line-height: 1.5; color: #4E5573;">{{ p.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <sc-if value="{{ showDarkPanel }}" hint-placeholder-val="{{ true }}">
+    <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 28px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.dark.kicker }}</div>
+        <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.dark.title }}</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.dark.body }}</p>
+      </div>
+      <div style="display: flex; flex-direction: column; background: #0C1024; border: 1px solid #262C45; border-radius: 12px; overflow: hidden;">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; padding: 20px 22px; border-bottom: 1px solid #262C45;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <img src="assets/veroid-logo-white.png" alt="Vero ID" style="display: block; height: 22px; width: auto;">
+            <span style="width: 1px; height: 18px; background: #262C45;"></span>
+            <div style="font-family: 'Libre Franklin', sans-serif; font-size: 17px; font-weight: 600; color: #EDEFF7;">{{ t.nav.items.queue }}</div>
+          </div>
+          <div style="display: flex; gap: 26px; align-items: baseline;">
+            <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 26px; font-weight: 600; letter-spacing: -.02em; color: #939EE2; font-variant-numeric: tabular-nums;">38</span><span style="font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #B6BBD0;">{{ t.dark.pending }}</span></div>
+            <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 26px; font-weight: 600; letter-spacing: -.02em; color: #EDEFF7; font-variant-numeric: tabular-nums;">91%</span><span style="font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #B6BBD0;">{{ t.dark.auto }}</span></div>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 16px 22px; border-bottom: 1px solid rgba(38,44,69,.7); background: #151A33;">
+          <div style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #262C45; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #DDE1F6;">MR</div>
+          <div style="flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 3px;">
+            <div style="font-size: 14px; font-weight: 500; color: #EDEFF7;">Marina Ribeiro · CPF ***.418-02</div>
+            <div style="font-size: 12px; color: #B6BBD0;">{{ t.dark.signal1 }}</div>
+          </div>
+          <div style="flex: none; display: flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: rgba(179,38,30,.16); border: 1px solid rgba(240,120,110,.45); color: #FFB4AC;">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m7.6 7.6 4.8 4.8M12.4 7.6l-4.8 4.8"></path></svg>
+            <span style="font-size: 12px; font-weight: 500;">{{ t.dark.risk84 }}</span>
+          </div>
+          <button type="button" style="flex: none; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #10142B; background: #939EE2; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="background: #BCC3EE;">{{ t.dark.open }}</button>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 16px 22px; background: #151A33;">
+          <div style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #262C45; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #DDE1F6;">JC</div>
+          <div style="flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 3px;">
+            <div style="font-size: 14px; font-weight: 500; color: #EDEFF7;">José Carvalho · CPF ***.702-55</div>
+            <div style="font-size: 12px; color: #B6BBD0;">{{ t.dark.signal2 }}</div>
+          </div>
+          <div style="flex: none; display: flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: rgba(15,122,74,.18); border: 1px solid rgba(74,196,141,.4); color: #7FDCAE;">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"></circle><path d="m6.8 10.2 2.2 2.2 4.2-4.4"></path></svg>
+            <span style="font-size: 12px; font-weight: 500;">{{ t.dark.risk12 }}</span>
+          </div>
+          <button type="button" style="flex: none; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #EDEFF7; background: transparent; border: 1px solid #4E5573; padding: 10px 16px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="border-color: #939EE2;">{{ t.dark.open }}</button>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px; padding: 20px 22px; border-top: 1px solid #262C45;">
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #10142B; background: #939EE2; border: none; padding: 11px 18px; border-radius: 6px; cursor: pointer; min-height: 40px;" style-hover="background: #BCC3EE;">{{ t.comp.btn.primary }}</button>
+          <button type="button" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #EDEFF7; background: transparent; border: 1px solid #4E5573; padding: 11px 18px; border-radius: 6px; cursor: pointer; min-height: 40px; outline: 2px solid #939EE2; outline-offset: 2px;">{{ t.dark.focus }}</button>
+          <button type="button" disabled="disabled" style="font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; color: #9198B5; background: #1C2240; border: 1px solid #262C45; padding: 11px 18px; border-radius: 6px; cursor: not-allowed; min-height: 40px;">{{ t.comp.btn.disabled }}</button>
+          <div style="display: flex; flex-direction: column; gap: 6px; min-width: 190px;">
+            <label for="ds-dark-search" style="font-size: 12px; font-weight: 500; color: #DDE1F6;">{{ t.dark.searchLabel }}</label>
+            <input id="ds-dark-search" type="text" style="font-family: 'Geist', sans-serif; font-size: 14px; color: #EDEFF7; padding: 11px 12px; border: 1px solid #4E5573; border-radius: 4px; background: #0C1024; outline: none; min-height: 40px;" style-focus="border-color: #939EE2; box-shadow: 0 0 0 3px rgba(147,158,226,.22);">
+          </div>
+        </div>
+      </div>
+      <div style="font-size: 12px; line-height: 1.55; color: #4E5573; max-width: 84ch;">{{ t.dark.note }}</div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ showTokenCode }}" hint-placeholder-val="{{ true }}">
+    <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #6A7192;">{{ t.tokens.kicker }}</div>
+        <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 28px; line-height: 1.15; letter-spacing: -.025em; font-weight: 700;">{{ t.tokens.title }}</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4E5573; max-width: 72ch; text-wrap: pretty;">{{ t.tokens.body }}</p>
+      </div>
+      <pre style="margin: 0; padding: 24px; background: #10142B; color: #DDE1F6; border-radius: 12px; overflow-x: auto; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12.5px; line-height: 1.75;">:root {
+  /* brand — overridden per tenant by the Brand Kit */
+  --brand-50:#F0F2FB; --brand-100:#DDE1F6; --brand-200:#BCC3EE;
+  --brand-300:#939EE2; --brand-400:#6C79D4; --brand-500:#4756C9;
+  --brand-600:#3742A8; --brand-700:#2B3486; --brand-800:#232C6B;
+  --brand-900:#171D46;
+  --brand-primary:var(--brand-800); --brand-accent:var(--brand-500);
+
+  /* neutral */
+  --n-50:#F5F6FA; --n-100:#EBEDF4; --n-200:#D7DAE8; --n-300:#B6BBD0;
+  --n-400:#9198B5; --n-500:#6A7192; --n-600:#4E5573; --n-700:#3C4262;
+  --n-800:#262C45; --n-900:#10142B;
+
+  /* semantic — never overridden */
+  --risk-low:#0F7A4A;    --risk-low-bg:#E6F2EB;    --risk-low-ink:#0B5C37;
+  --risk-review:#B06A00; --risk-review-bg:#FBF0DF; --risk-review-ink:#7A4900;
+  --risk-high:#B3261E;   --risk-high-bg:#FBE9E7;   --risk-high-ink:#8C1D18;
+  --risk-unknown:#5A6570;--risk-unknown-bg:#EEF0F2;--risk-unknown-ink:#3D464F;
+
+  /* type — sans only, no serif in the system */
+  --font-display:'Libre Franklin', system-ui, sans-serif;
+  --font-text:'Geist', system-ui, sans-serif;
+
+  /* shape — set chosen in the Brand Kit */
+  --radius-sm:4px; --radius-md:6px; --radius-lg:12px; --radius-pill:999px;
+
+  /* elevation */
+  --shadow-raised:0 1px 2px rgba(16,20,43,.08);
+  --shadow-overlay:0 4px 14px rgba(16,20,43,.1);
+  --shadow-modal:0 14px 36px rgba(16,20,43,.16);
+  --scrim:rgba(16,20,43,.48);
+
+  /* focus — never removed */
+  --focus-ring:var(--brand-500); --focus-width:2px; --focus-offset:2px;
+
+  /* motion */
+  --dur-instant:80ms; --dur-fast:160ms; --dur-base:240ms; --dur-slow:400ms;
+  --ease-in:cubic-bezier(.2,.8,.3,1); --ease-out:cubic-bezier(.4,0,1,1);
+
+  /* layout */
+  --bp-md:600px; --bp-lg:900px; --bp-xl:1280px;
+  --content-max:1240px; --flow-max:520px;
+  --target-desktop:40px; --target-mobile:44px;
+
+  /* icon */
+  --icon-stroke:1.5; --icon-sm:16px; --icon-md:18px; --icon-lg:24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-instant:0ms; --dur-fast:0ms; --dur-base:0ms; --dur-slow:0ms; }
+}
+
+[data-theme="dark"] {
+  --brand-primary:var(--brand-300);
+  --surface:#0C1024; --surface-raised:#151A33; --border:#262C45;
+  --ink:#EDEFF7; --ink-muted:#B6BBD0;
+  --focus-ring:var(--brand-300);
+  --risk-low-bg:rgba(15,122,74,.18);    --risk-low-ink:#7FDCAE;
+  --risk-review-bg:rgba(176,106,0,.18); --risk-review-ink:#F0C077;
+  --risk-high-bg:rgba(179,38,30,.16);   --risk-high-ink:#FFB4AC;
+}</pre>
+    </section>
+  </sc-if>
+
+  <section style="padding: clamp(40px, 5vw, 64px) 0 0; display: flex; flex-direction: column; gap: 20px;">
+    <div style="display: flex; flex-direction: column; gap: 14px; padding: 28px; background: #F0F2FB; border: 1px solid #BCC3EE; border-radius: 12px;">
+      <h2 style="margin: 0; font-family: 'Libre Franklin', sans-serif; font-size: 22px; line-height: 1.2; letter-spacing: -.02em; font-weight: 700;">{{ t.wl.title }}</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px;">
+        <sc-for list="{{ t.wl.cols }}" as="col" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #2B3486;">{{ col.t }}</div>
+            <div style="font-size: 13px; line-height: 1.55; color: #3C4262;">{{ col.b }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px; background: #FFFFFF; border: 1px solid #D7DAE8; border-radius: 12px;">
+      <div style="font-size: 13px; font-weight: 600;">{{ t.wl.logoTitle }}</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; justify-content: center; height: 88px; padding: 0 20px; border-radius: 10px; border: 1px solid #D7DAE8; background: #FFFFFF;"><img src="assets/veroid-logo.png" alt="Vero ID, versão clara" style="display: block; height: 30px; width: auto; max-width: 100%;"></div>
+          <span style="font-size: 11px; line-height: 1.45; color: #4E5573;">{{ t.wl.logoLight }}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; justify-content: center; height: 88px; padding: 0 20px; border-radius: 10px; border: 1px solid #262C45; background: #0C1024;"><img src="assets/veroid-logo-white.png" alt="Vero ID, versão escura" style="display: block; height: 30px; width: auto; max-width: 100%;"></div>
+          <span style="font-size: 11px; line-height: 1.45; color: #4E5573;">{{ t.wl.logoDark }}</span>
+        </div>
+        
+      </div>
+      <div style="font-size: 12px; line-height: 1.55; color: #4E5573;">{{ t.wl.logoNote }}</div>
+    </div>
+  </section>
+
+  <footer style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: clamp(40px, 5vw, 64px); padding: 28px 0 56px; border-top: 1px solid #D7DAE8;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 13px; color: #3C4262;">
+      <img src="assets/veroid-logo.png" alt="Vero ID" style="display: block; height: 20px; width: auto;">
+      <span style="width: 1px; height: 16px; background: #D7DAE8;"></span>
+      <span>{{ t.meta.byLabel }} <strong style="font-weight: 600; color: #10142B;">Gabriel Moreira</strong> · @GabrielTechDesign</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 13px;">
+      <a href="https://www.linkedin.com/in/ogabriel-moreira/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://gabrielmoreira.tech" target="_blank" rel="noopener">gabrielmoreira.tech</a>
+      
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;pt&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;\&quot;en\&quot; | \&quot;pt\&quot;&quot;,&quot;section&quot;:&quot;Idioma&quot;},&quot;showDarkPanel&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;},&quot;showTokenCode&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;}}">
+const DICT = {
+  en: {
+    meta: {
+      eyebrow: "Design System v0.1",
+      langBtn: "Português",
+      byLabel: "Built by",
+      version: "v0.1 · September 2026",
+      lead: "Tokens, components and rules for a white-label identity verification platform: a panel where analysts decide, and a mobile flow where the person verifies themselves. Libre Franklin for headings, Geist for the product. Each organisation's Brand Kit overrides brand.* only. Everything under semantic.* is fixed, because an analyst who switches tenant has to read the same colour with the same meaning."
+    },
+    about: {
+      kicker: "00 · About this system",
+      title: "Built for Vero ID",
+      body: "Vero ID is a white-label KYC, liveness and customer qualification platform for four priority markets: fintech, credit, agribusiness and automotive. A company sends a verification link, the person completes it on their phone, and an antifraud copilot returns an explainable risk score from 0 to 100. The product name is provisional; Íntegro, Confirma and Aferi are the alternatives on the table.",
+      stackLabel: "Stack this system ships against",
+      cards: [
+        { t: "What it covers", b: "Two surfaces. The B2B panel has three roles: owner, analyst and viewer. The B2C flow is one decision per screen, mobile-first, carrying the organisation's brand. UI labels follow the spec terminology: organisation, subject, verification link, session, risk signal, risk score, qualification score." },
+        { t: "How it was built", b: "Written with Claude Code, with a few skills running alongside it: a UX/UI design review, a UI engineering system that sets archetype, palette, density and motion, and a humanizer pass over every string. Decisions that changed the design are recorded in DECISIONS.md." },
+        { t: "Naming and semantics", b: "brand.* belongs to the tenant. semantic.* (risk, success, warning, danger) belongs to the system. Tokens are CSS variables scoped per tenant, generated 50–900 from three brand colours. Component and prop names match the database columns, so a screen and its query read the same." }
+      ]
+    },
+    color: {
+      kicker: "01 · Colour",
+      title: "Brand scales",
+      body: "Two 50–900 scales generated from primary #232C6B and accent #4756C9. Steps 50–200 are surfaces, 300–400 borders and states, 500–900 text and actions.",
+      brandNote: "primary = 800 · accent = 500",
+      neutralNote: "ink = 900 · surface = 50 · border = 200",
+      risk: {
+        lowLabel: "success · risk 0–30",
+        lowNote: "auto-approval when the organisation allows it",
+        reviewLabel: "warning · risk 31–70",
+        reviewNote: "manual review by an analyst",
+        highLabel: "danger · risk 71–100",
+        highNote: "rejection suggested, always reviewable",
+        unknownLabel: "unknown · indeterminate",
+        unknownNote: "Timeout, daily AI cap reached, or liveness unavailable"
+      }
+    },
+    type: {
+      kicker: "02 · Typography",
+      title: "Scale and roles",
+      body: "Libre Franklin 700 appears in display, h1 and h2. Everything else is Geist: tables, forms, chips and numbers, with font-variant-numeric: tabular-nums on scores and money. There is no serif in the system. Score columns need figures of equal width, and the subject flow is read on cheap phones in bad light, where a low-contrast serif loses.",
+      fontsTitle: "Eight approved families for the Brand Kit",
+      fontsNote: "The owner picks one family for display and one for text, both from this list. All eight are sans, ship a 400/500/600 range and have tabular figures.",
+      fonts: [
+        { name: "Libre Franklin", use: "System default for display" },
+        { name: "Geist", use: "System default for product text" },
+        { name: "Plus Jakarta Sans", use: "Warmer, close to the reader" },
+        { name: "IBM Plex Sans", use: "Banking, serious tone" },
+        { name: "Work Sans", use: "Neutral, wide language coverage" },
+        { name: "Figtree", use: "Health and cooperatives" },
+        { name: "Manrope", use: "Tech, agribusiness and automotive" },
+        { name: "Atkinson Hyperlegible", use: "Accessibility-first tenants" }
+      ],
+      rows: {
+        display: "Display",
+        h1: "Page title",
+        h2: "Section",
+        h3: "Card subtitle",
+        bodyLg: "Large body, used in the subject flow: one decision per screen, short sentence, no jargon.",
+        body: "Default panel body. Medium density, plenty of room for data.",
+        label: "Field label",
+        overline: "Overline · metadata"
+      },
+      use: {
+        display: "Landing, report cover",
+        h1: "H1 of the panel and the subject flow",
+        h2: "H2, large card title",
+        h3: "H3, table and modal header",
+        bodyLg: "B2C, consent text",
+        body: "Table row, description",
+        label: "Form, button, chip",
+        overline: "Big-number label, chart axis",
+        number: "Score, big number, amount in BRL"
+      }
+    },
+    space: {
+      kicker: "03 · Grid",
+      title: "Space, radius and elevation",
+      spaceTitle: "Space · base 4",
+      spaceNote: "Card padding 22–24. Section gap 28. Breathing room between blocks 48–64.",
+      radiusTitle: "Radius",
+      radiusNote: "The Brand Kit can swap the set (square 0/2/6, soft 4/6/12, rounded 8/12/20). Input is sm, button md, card lg. A chip is always pill.",
+      elevTitle: "Elevation",
+      elevNote: "flat (border) · raised (card) · overlay (dropdown) · modal. Nothing above that: a data product prefers a border to a shadow."
+    },
+    comp: {
+      kicker: "04 · Components",
+      title: "Panel and flow base",
+      btn: {
+        title: "Buttons · height 40, 44 on mobile",
+        primary: "Send link",
+        secondary: "Cancel",
+        ghost: "Add note",
+        destructive: "Reject",
+        disabled: "Unavailable",
+        note: "Primary is solid 800, hover 600. The destructive button carries the disabled attribute until a reason is picked, and the text next to it says what is missing."
+      },
+      field: {
+        title: "Fields and consent",
+        phone: "Subject's mobile",
+        phoneHint: "SMS, WhatsApp or email. We never put sensitive data in the message.",
+        cpf: "CPF",
+        cpfError: "Check digit does not match. Retype the 11 numbers.",
+        consentBio: "I allow my facial biometrics to be used to confirm my identity.",
+        required: "Required",
+        consentMkt: "I want to receive offers from this company.",
+        optional: "Optional, separate"
+      },
+      chip: {
+        title: "State and risk chips",
+        low: "Risk 12 · approved",
+        review: "Risk 58 · in review",
+        high: "Risk 84 · reject",
+        unknown: "Indeterminate",
+        opened: "Link opened",
+        scoreLabel: "Risk score",
+        auto: "auto",
+        note: "Every chip carries an icon and a word. Colour repeats the meaning, it never carries it alone."
+      },
+      num: {
+        title: "Big numbers",
+        checks: "Verifications",
+        checksDelta: "+12.4% vs previous period",
+        losses: "Losses avoided",
+        lossesNote: "estimate, average ticket for the niche",
+        funnel: "Funnel",
+        step1: "Sent 1,284",
+        step2: "Opened 1,053",
+        step3: "Camera 782",
+        step4: "Submitted 719",
+        note: "The camera permission step gets a dashed amber outline in every funnel chart. It is the drop the product exists to fix."
+      },
+      alert: {
+        title: "Notices",
+        demoTitle: "Demo mode.",
+        demoBody: "Bureau, SMS and market data are simulated. Selfies are deleted after 24 hours.",
+        capTitle: "Daily AI cap reached.",
+        capBody: "The next sessions go to manual review without interrupting the subject.",
+        honesty: "Demonstration prototype. Detection uses computer vision and generative AI and does not replace certified liveness (ISO/IEC 30107-3)."
+      },
+      empty: {
+        title: "Empty and loading",
+        head: "No sessions in the queue",
+        body: "A session shows up here once a subject finishes a verification scoring above 30.",
+        cta: "Send the first link",
+        note: "Skeleton for waits above one second. Nothing at all below 300ms: the flash reads worse than the wait."
+      }
+    },
+    icons: {
+      kicker: "05 · Icons and focus",
+      title: "Icon next to colour, always",
+      body: "Stroke 1.5 on a 20 grid, currentColor, rounded caps. Sizes are 16 in a chip, 18 in a button or table row, 24 in an empty state. No state is communicated by colour alone: risk, error and success each carry an icon and a word.",
+      setTitle: "Base set",
+      setNote: "An icon-only button gets an aria-label and a 40px target on desktop, 44 on mobile. When no glyph says the action clearly, the label is text.",
+      focusTitle: "Keyboard focus",
+      focusNote: "A 2px ring in #4756C9 offset by 2px, applied on :focus-visible. Never removed, never replaced by the hover state. On a dark surface or a destructive button the ring becomes #939EE2 to hold 3:1.",
+      tabTitle: "Tab order in the subject flow",
+      tabBody: "Step title, consent text, required checkbox, optional checkbox, primary action, secondary action. A modal traps focus and returns it to the trigger on close; Esc always closes.",
+      l: {
+        approved: "approved",
+        review: "review",
+        rejected: "rejected",
+        unknown: "indeterminate",
+        pending: "pending",
+        capture: "capture",
+        liveness: "liveness",
+        subject: "subject",
+        search: "search",
+        filter: "filter",
+        evidence: "evidence",
+        export: "export"
+      }
+    },
+    nav: {
+      kicker: "06 · Navigation and data",
+      title: "Panel shell and table",
+      body: "A 232px sidebar marks the active item with a filled background and an inner bar. Table rows are 52px, the header stays put, and the score column is right-aligned with tabular figures. No zebra striping: a 1px border separates rows.",
+      items: { queue: "Review queue", subjects: "Subjects", policies: "Risk policies", reports: "Reports" },
+      navNote: "Active item: 800 background, white text, inner 300 bar. Hover: neutral 100.",
+      crumb: "Panel",
+      pageTitle: "38 sessions pending",
+      search: "CPF or name",
+      tabs: { pending: "Pending 38", today: "Today 124", rejected: "Rejected 9" },
+      cols: { subject: "Subject", received: "Received", score: "Score", state: "State" },
+      rows: {
+        r1time: "4 min ago",
+        r1state: "Reject",
+        r2time: "12 min ago",
+        r2state: "In review",
+        r3time: "26 min ago",
+        r3state: "Approved"
+      },
+      pager: "1–3 of 38",
+      note: "A long name truncates with an ellipsis and shows in full in the session panel, never in a mouse-only tooltip. Below 900px the sidebar collapses into a drawer and the table becomes a card list with subject, score and state."
+    },
+    over: {
+      kicker: "07 · Overlays",
+      title: "Dropdown, tooltip, toast, modal",
+      body: "One overlay at a time. Dropdown and tooltip use the overlay elevation; the modal uses the modal elevation over a rgba(16,20,43,.48) scrim. A toast sits in the bottom right for six seconds and is announced through role=\"status\".",
+      ddTitle: "Dropdown · min width 200",
+      ddTrigger: "Session actions",
+      ddEvidence: "View evidence",
+      ddExport: "Export report",
+      ddReject: "Reject subject",
+      tipTitle: "Tooltip · reinforcement only, never the only copy",
+      tipBody: "The score comes from 14 signals. The breakdown lives in the evidence panel.",
+      toastTitle: "Toast",
+      toast1Title: "Link sent to ***.418-02",
+      toast1Body: "Expires in 30 minutes",
+      toast1Action: "Undo",
+      toast2Title: "We could not send the SMS",
+      toast2Body: "The carrier refused the number. Try WhatsApp or email.",
+      toast2Action: "Retry",
+      toastNote: "A toast never holds the only route to a destructive action, nor information the analyst will need to read twice. That goes on the session row.",
+      modalTitle: "Destructive modal · max 480",
+      modalHead: "Reject Marina Ribeiro?",
+      modalBody: "She receives the refusal by SMS and the case enters the dispute report. The decision is logged under your name.",
+      modalField: "Reason for rejection",
+      modalSelect: "Select",
+      modalKeep: "Keep in review",
+      modalReject: "Reject",
+      modalNote: "The destructive action stays disabled until a reason is picked, and this line says so. A disabled button with no explanation is a defect."
+    },
+    states: {
+      kicker: "08 · Screen states",
+      title: "Error, permission and stale data",
+      body: "Every region that loads data has five states: loading, empty, error, partial and ready. The first two are in section 04. No message stops at \"something went wrong\": it says what happened and what to do next.",
+      errTitle: "Load error",
+      errHead: "The queue did not load",
+      errBody: "The sessions service did not answer in 10 seconds. Decisions you already saved were not lost.",
+      errCta: "Reload queue",
+      permTitle: "Permission denied · subject flow",
+      permHead: "We need your camera",
+      permBody: "Tap the lock icon next to the address bar and allow the camera. Nothing is recorded before you accept.",
+      permCta: "Try again",
+      permAltBefore: "Or",
+      permAltLink: "finish with an agent",
+      permAltAfter: "in under 2 minutes.",
+      partTitle: "Partial · stale data",
+      partNote: "Figures from 14:02. The bureau is unavailable; the refresh comes back on its own.",
+      partMetric: "Average score",
+      partFoot: "Stale value: opacity .68 with the notice above it. Missing value: an em dash, never a zero."
+    },
+    motion: {
+      kicker: "09 · Motion and 10 · Responsive grid",
+      title: "Time and width",
+      mTitle: "Motion",
+      rows: [
+        { k: "instant · 80ms", v: "hover, focus, chip" },
+        { k: "fast · 160ms", v: "dropdown, tooltip, toast" },
+        { k: "base · 240ms", v: "modal, drawer, step change" },
+        { k: "slow · 400ms", v: "score bar, funnel on enter" }
+      ],
+      mNote: "Easing is cubic-bezier(.2,.8,.3,1) on the way in and cubic-bezier(.4,0,1,1) on the way out. Only opacity and transform move, never the width of a table. Under prefers-reduced-motion everything drops to 0ms and the skeleton swaps its pulse for a flat fill. The face capture frame does not blink: its border changes colour over 160ms.",
+      bpTitle: "Breakpoints",
+      bps: [
+        { k: "sm < 600", v: "4 col · gutter 16 · margin 20 · target 44" },
+        { k: "md 600", v: "8 col · gutter 20 · margin 32 · drawer" },
+        { k: "lg 900", v: "12 col · gutter 24 · fixed sidebar · target 40" },
+        { k: "xl 1280", v: "12 col · content capped at 1240" }
+      ],
+      bpNote: "The subject flow is always a single column capped at 520px and centred, desktop included. The panel uses the full grid. Browser zoom at 200% cannot hide the primary action, so it sits in the flow rather than in a fixed bar."
+    },
+    voice: {
+      kicker: "11 · Voice",
+      title: "Microcopy",
+      body: "For the subject: second person, short sentences, no risk jargon. They do not know what a score is and do not need to. For the analyst: the exact technical term, no padding. A button names the outcome. Portuguese is written first and English is reviewed against it, never machine-translated.",
+      doLabel: "Write",
+      dontLabel: "Do not write",
+      pairs: [
+        { good: "Send link to subject", bad: "Submit", note: "The label says what happens after the click." },
+        { good: "Point the camera at your face and hold the phone still.", bad: "Initiating passive liveness capture.", note: "An instruction to the subject describes the gesture, not the technology." },
+        { good: "We could not confirm your identity right now. An agent will call you in under 2 minutes.", bad: "Verification rejected. Score 84.", note: "The subject never sees the score or the fraud signal. The analyst sees both." }
+      ]
+    },
+    dark: {
+      kicker: "12 · Dark mode",
+      title: "Panel in dark theme",
+      body: "Only the admin panel has a dark theme. The subject flow stays light, because face capture depends on a bright screen. In the dark, primary moves up to step 300 and the risk chips change their background while keeping the hue.",
+      pending: "pending",
+      auto: "auto-approval",
+      signal1: "Screen pattern detected · 2 faces in frame",
+      signal2: "Liveness passed · data consistent",
+      risk84: "Risk 84",
+      risk12: "Risk 12",
+      open: "Open",
+      focus: "Visible focus",
+      searchLabel: "Search subject",
+      note: "In the dark the primary button inverts: 300 background, 900 ink. A risk chip uses the hue at 16–18% alpha with a 40% border and text in the light step, and it keeps the icon."
+    },
+    tokens: {
+      kicker: "13 · Tokens",
+      title: "CSS variables",
+      body: "The Brand Kit injects only --brand-* and --radius-* in the tenant's scope. Semantic, focus, motion and layout tokens live in the global theme."
+    },
+    wl: {
+      title: "White-label rules",
+      cols: [
+        { t: "The organisation controls", b: "Light and dark logo, favicon, cover image, primary, secondary and accent colours, one of the eight approved type families, the radius set, and the tone of voice." },
+        { t: "The system controls", b: "Risk, success, warning and danger colours; the type scale; spacing; touch target height (44px on mobile); the focus ring; and the rule that an icon always accompanies colour." },
+        { t: "Contrast check", b: "On save, the primary colour is tested against white and against the surface. If it fails AA, the system proposes the nearest step of the generated scale that passes and shows the ratio it measured." }
+      ],
+      logoTitle: "Brand assets the tenant uploads",
+      logoLight: "SVG or PNG at 2x, transparent, minimum height 24px, clear space of half the logo height.",
+      logoDark: "Separate file. An inverted light logo is refused when it drops below 3:1 on #0C1024.",
+      favicon: "SVG plus 32×32 PNG fallback. The mark alone, no wordmark.",
+      logoNote: "Everything the subject sees carries the organisation's brand, with a quiet \"Verification by Vero ID\" in the footer. Asset slots are still empty in this document: drop the files in and the preview picks them up."
+    }
+  },
+  pt: {
+    meta: {
+      eyebrow: "Design System v0.1",
+      langBtn: "English",
+      byLabel: "Feito por",
+      version: "v0.1 · setembro de 2026",
+      lead: "Tokens, componentes e regras de uma plataforma white-label de verificação de identidade: um painel onde o analista decide e um fluxo mobile onde o titular se verifica. Libre Franklin nos títulos, Geist no produto. O Brand Kit de cada organização sobrescreve apenas brand.*; tudo em semantic.* é fixo, porque um analista que troca de tenant precisa ler a mesma cor com o mesmo significado."
+    },
+    about: {
+      kicker: "00 · Sobre este sistema",
+      title: "Construído para o Vero ID",
+      body: "O Vero ID é uma plataforma white-label de KYC, prova de vida e qualificação de clientes para quatro mercados prioritários: fintech, crédito, agronegócio e automotivo. A empresa dispara um link de verificação, o titular conclui pelo celular e um copiloto antifraude devolve um score de risco explicável de 0 a 100. O nome é provisório; Íntegro, Confirma e Aferi são as alternativas em aberto.",
+      stackLabel: "Stack para a qual este sistema foi escrito",
+      cards: [
+        { t: "O que ele cobre", b: "Duas superfícies. O painel B2B tem três papéis: proprietário, analista e leitor. O fluxo B2C é uma decisão por tela, mobile-first, com a marca da organização. Os rótulos da interface seguem a terminologia da especificação: organização, titular, link de verificação, sessão, sinal de risco, score de risco, score de qualificação." },
+        { t: "Como foi construído", b: "Escrito com Claude Code, com algumas skills rodando em paralelo: uma revisão de UX/UI, um sistema de engenharia de interface que define arquétipo, paleta, densidade e motion, e uma passada de humanização em cada texto. As decisões que mudaram o desenho ficam registradas no DECISIONS.md." },
+        { t: "Nomenclatura e semântica", b: "brand.* pertence ao tenant. semantic.* (risco, sucesso, alerta, erro) pertence ao sistema. Os tokens são CSS variables no escopo de cada tenant, gerados de 50 a 900 a partir de três cores de marca. Nomes de componente e de prop acompanham as colunas do banco, então a tela e a query se leem igual." }
+      ]
+    },
+    color: {
+      kicker: "01 · Cor",
+      title: "Escalas de marca",
+      body: "Duas escalas de 50 a 900 geradas a partir de primary #232C6B e accent #4756C9. Os passos 50–200 são superfícies, 300–400 bordas e estados, 500–900 texto e ações.",
+      brandNote: "primary = 800 · accent = 500",
+      neutralNote: "ink = 900 · surface = 50 · border = 200",
+      risk: {
+        lowLabel: "success · risco 0–30",
+        lowNote: "aprovação automática quando a organização permite",
+        reviewLabel: "warning · risco 31–70",
+        reviewNote: "revisão manual do analista",
+        highLabel: "danger · risco 71–100",
+        highNote: "reprovação sugerida, sempre revisável",
+        unknownLabel: "unknown · indeterminado",
+        unknownNote: "Timeout, teto diário de IA ou prova de vida indisponível"
+      }
+    },
+    type: {
+      kicker: "02 · Tipografia",
+      title: "Escala e papéis",
+      body: "Libre Franklin 700 aparece em display, h1 e h2. Todo o resto é Geist: tabela, formulário, chip e número, com font-variant-numeric: tabular-nums em score e valores. Não existe serifada no sistema. Coluna de score precisa de algarismo de largura igual, e o fluxo do titular é lido em celular simples, com luz ruim, onde uma serifada de baixo contraste perde.",
+      fontsTitle: "Oito famílias aprovadas para o Brand Kit",
+      fontsNote: "O proprietário escolhe uma família de display e uma de texto, ambas desta lista. Todas são sans, têm pesos 400/500/600 e algarismos tabulares.",
+      fonts: [
+        { name: "Libre Franklin", use: "Padrão do sistema em display" },
+        { name: "Geist", use: "Padrão do sistema no texto de produto" },
+        { name: "Plus Jakarta Sans", use: "Mais calorosa, próxima do leitor" },
+        { name: "IBM Plex Sans", use: "Tom bancário, sério" },
+        { name: "Work Sans", use: "Neutra, boa cobertura de idiomas" },
+        { name: "Figtree", use: "Saúde e cooperativas" },
+        { name: "Manrope", use: "Tech, agro e automotivo" },
+        { name: "Atkinson Hyperlegible", use: "Tenants com acessibilidade em primeiro lugar" }
+      ],
+      rows: {
+        display: "Display",
+        h1: "Título de página",
+        h2: "Seção",
+        h3: "Subtítulo de card",
+        bodyLg: "Corpo grande, usado no fluxo do titular: uma decisão por tela, frase curta, sem jargão.",
+        body: "Corpo padrão do painel. Densidade média, muito espaço para dados.",
+        label: "Rótulo de campo",
+        overline: "Overline · metadado"
+      },
+      use: {
+        display: "Landing, capa de relatório",
+        h1: "H1 do painel e do fluxo do titular",
+        h2: "H2, título de card grande",
+        h3: "H3, cabeçalho de tabela e modal",
+        bodyLg: "B2C, texto de consentimento",
+        body: "Linha de tabela, descrição",
+        label: "Formulário, botão, chip",
+        overline: "Rótulo de big number, eixo de gráfico",
+        number: "Score, big number, valor em R$"
+      }
+    },
+    space: {
+      kicker: "03 · Grade",
+      title: "Espaço, raio e elevação",
+      spaceTitle: "Espaço · base 4",
+      spaceNote: "Padding de card 22–24. Gap de seção 28. Respiro entre blocos 48–64.",
+      radiusTitle: "Raio",
+      radiusNote: "O Brand Kit pode trocar o conjunto (reto 0/2/6, suave 4/6/12, arredondado 8/12/20). Input é sm, botão md, card lg. Chip é sempre pill.",
+      elevTitle: "Elevação",
+      elevNote: "flat (borda) · raised (card) · overlay (dropdown) · modal. Nada acima disso: produto de dados prefere borda a sombra."
+    },
+    comp: {
+      kicker: "04 · Componentes",
+      title: "Base do painel e do fluxo",
+      btn: {
+        title: "Botões · altura 40, 44 no mobile",
+        primary: "Enviar link",
+        secondary: "Cancelar",
+        ghost: "Adicionar nota",
+        destructive: "Reprovar",
+        disabled: "Indisponível",
+        note: "Primário sólido 800, hover 600. O botão destrutivo carrega o atributo disabled até haver motivo, e o texto ao lado diz o que falta."
+      },
+      field: {
+        title: "Campos e consentimento",
+        phone: "Celular do titular",
+        phoneHint: "SMS, WhatsApp ou e-mail. Nunca enviamos dado sensível na mensagem.",
+        cpf: "CPF",
+        cpfError: "Dígito verificador não confere. Digite os 11 números novamente.",
+        consentBio: "Autorizo o uso da minha biometria facial para confirmar minha identidade.",
+        required: "Obrigatório",
+        consentMkt: "Quero receber ofertas desta empresa.",
+        optional: "Opcional, separado"
+      },
+      chip: {
+        title: "Chips de estado e risco",
+        low: "Risco 12 · aprovado",
+        review: "Risco 58 · em revisão",
+        high: "Risco 84 · reprovar",
+        unknown: "Indeterminado",
+        opened: "Link aberto",
+        scoreLabel: "Score de risco",
+        auto: "auto",
+        note: "Todo chip tem ícone e palavra. A cor repete o significado, nunca o carrega sozinha."
+      },
+      num: {
+        title: "Big numbers",
+        checks: "Verificações",
+        checksDelta: "+12,4% vs período anterior",
+        losses: "Perdas evitadas",
+        lossesNote: "estimativa, ticket médio do nicho",
+        funnel: "Funil",
+        step1: "Enviado 1.284",
+        step2: "Aberto 1.053",
+        step3: "Câmera 782",
+        step4: "Enviou 719",
+        note: "A etapa de permissão de câmera recebe contorno âmbar tracejado em todo gráfico de funil. É a queda que o produto existe para resolver."
+      },
+      alert: {
+        title: "Avisos",
+        demoTitle: "Modo demonstração.",
+        demoBody: "Bureau, SMS e dados de mercado são simulados. Selfies são apagadas em 24h.",
+        capTitle: "Teto diário de IA atingido.",
+        capBody: "As próximas sessões vão para revisão manual sem interromper o titular.",
+        honesty: "Protótipo de demonstração. A detecção usa visão computacional e IA generativa e não substitui prova de vida certificada (ISO/IEC 30107-3)."
+      },
+      empty: {
+        title: "Vazio e carregando",
+        head: "Nenhuma sessão na fila",
+        body: "Uma sessão aparece aqui quando um titular concluir uma verificação com risco acima de 30.",
+        cta: "Enviar primeiro link",
+        note: "Skeleton para espera acima de um segundo. Nada abaixo de 300ms: o flash lê pior que a espera."
+      }
+    },
+    icons: {
+      kicker: "05 · Ícones e foco",
+      title: "Ícone junto de cor, sempre",
+      body: "Traço 1.5 na grade de 20, currentColor, cantos arredondados. Tamanhos 16 em chip, 18 em botão e linha de tabela, 24 em estado vazio. Nenhum estado é comunicado só por cor: risco, erro e sucesso carregam ícone e palavra.",
+      setTitle: "Conjunto base",
+      setNote: "Botão só de ícone recebe aria-label e alvo de 40px no desktop, 44 no mobile. Quando nenhum glifo diz a ação com clareza, o rótulo é texto.",
+      focusTitle: "Foco de teclado",
+      focusNote: "Anel de 2px em #4756C9 com deslocamento de 2px, aplicado em :focus-visible. Nunca removido, nunca substituído pelo hover. Em superfície escura ou em botão destrutivo o anel vira #939EE2 para manter 3:1.",
+      tabTitle: "Ordem de tabulação no fluxo do titular",
+      tabBody: "Título da etapa, texto de consentimento, checkbox obrigatório, checkbox opcional, ação primária, ação secundária. Modal prende o foco e devolve ao gatilho ao fechar; Esc sempre fecha.",
+      l: {
+        approved: "aprovado",
+        review: "revisão",
+        rejected: "reprovado",
+        unknown: "indeterminado",
+        pending: "pendente",
+        capture: "captura",
+        liveness: "prova de vida",
+        subject: "titular",
+        search: "busca",
+        filter: "filtro",
+        evidence: "evidências",
+        export: "exportar"
+      }
+    },
+    nav: {
+      kicker: "06 · Navegação e dados",
+      title: "Shell do painel e tabela",
+      body: "Sidebar de 232px marca o item ativo com fundo sólido e barra interna. Linha de tabela de 52px, cabeçalho fixo, coluna de score alinhada à direita com algarismo tabular. Nada de zebra: borda de 1px entre linhas.",
+      items: { queue: "Fila de revisão", subjects: "Titulares", policies: "Políticas de risco", reports: "Relatórios" },
+      navNote: "Item ativo: fundo 800, texto branco, barra interna 300. Hover: neutral 100.",
+      crumb: "Painel",
+      pageTitle: "38 sessões pendentes",
+      search: "CPF ou nome",
+      tabs: { pending: "Pendentes 38", today: "Hoje 124", rejected: "Reprovadas 9" },
+      cols: { subject: "Titular", received: "Recebido", score: "Score", state: "Estado" },
+      rows: {
+        r1time: "há 4 min",
+        r1state: "Reprovar",
+        r2time: "há 12 min",
+        r2state: "Em revisão",
+        r3time: "há 26 min",
+        r3state: "Aprovado"
+      },
+      pager: "1–3 de 38",
+      note: "Nome longo trunca com reticências e aparece completo no painel da sessão, nunca em tooltip só de mouse. Abaixo de 900px a sidebar colapsa em gaveta e a tabela vira lista de cards com titular, score e estado."
+    },
+    over: {
+      kicker: "07 · Overlays",
+      title: "Dropdown, tooltip, toast, modal",
+      body: "Um overlay por vez. Dropdown e tooltip usam a elevação overlay; o modal usa a elevação modal sobre véu rgba(16,20,43,.48). O toast aparece no canto inferior direito por 6 segundos e é anunciado por role=\"status\".",
+      ddTitle: "Dropdown · largura mínima 200",
+      ddTrigger: "Ações da sessão",
+      ddEvidence: "Ver evidências",
+      ddExport: "Exportar laudo",
+      ddReject: "Reprovar titular",
+      tipTitle: "Tooltip · só reforço, nunca o texto único",
+      tipBody: "O score vem de 14 sinais. O detalhe fica no painel de evidências.",
+      toastTitle: "Toast",
+      toast1Title: "Link enviado para ***.418-02",
+      toast1Body: "Expira em 30 minutos",
+      toast1Action: "Desfazer",
+      toast2Title: "Não foi possível enviar o SMS",
+      toast2Body: "A operadora recusou o número. Tente WhatsApp ou e-mail.",
+      toast2Action: "Tentar",
+      toastNote: "O toast nunca carrega a única via de uma ação destrutiva nem informação que o analista vá precisar reler. Isso vai para a linha da sessão.",
+      modalTitle: "Modal destrutivo · máx. 480",
+      modalHead: "Reprovar Marina Ribeiro?",
+      modalBody: "Ela recebe a recusa por SMS e o caso entra no relatório de contestação. A decisão fica registrada com o seu nome.",
+      modalField: "Motivo da reprovação",
+      modalSelect: "Selecione",
+      modalKeep: "Manter em revisão",
+      modalReject: "Reprovar",
+      modalNote: "A ação destrutiva fica desabilitada até haver motivo, e esta linha diz isso. Botão desabilitado sem explicação é defeito."
+    },
+    states: {
+      kicker: "08 · Estados de tela",
+      title: "Erro, permissão e dado velho",
+      body: "Toda região que carrega dado tem cinco estados: carregando, vazio, erro, parcial e pronto. Os dois primeiros estão na seção 04. Nenhuma mensagem para em \"algo deu errado\": ela diz o que aconteceu e qual é o próximo passo.",
+      errTitle: "Erro de carregamento",
+      errHead: "A fila não carregou",
+      errBody: "O serviço de sessões não respondeu em 10 segundos. As decisões que você já salvou não foram perdidas.",
+      errCta: "Recarregar fila",
+      permTitle: "Permissão negada · fluxo do titular",
+      permHead: "Precisamos da sua câmera",
+      permBody: "Toque no ícone de cadeado ao lado do endereço e libere a câmera. Nada é gravado antes do seu aceite.",
+      permCta: "Tentar novamente",
+      permAltBefore: "Ou",
+      permAltLink: "conclua com um atendente",
+      permAltAfter: "em até 2 minutos.",
+      partTitle: "Parcial · dado desatualizado",
+      partNote: "Números de 14:02. O bureau está indisponível; a atualização volta sozinha.",
+      partMetric: "Score médio",
+      partFoot: "Valor velho: opacidade .68 com o aviso acima. Valor ausente: travessão, nunca zero."
+    },
+    motion: {
+      kicker: "09 · Motion e 10 · Grade responsiva",
+      title: "Tempo e largura",
+      mTitle: "Motion",
+      rows: [
+        { k: "instant · 80ms", v: "hover, foco, chip" },
+        { k: "fast · 160ms", v: "dropdown, tooltip, toast" },
+        { k: "base · 240ms", v: "modal, gaveta, troca de etapa" },
+        { k: "slow · 400ms", v: "barra de score, funil ao entrar" }
+      ],
+      mNote: "Easing cubic-bezier(.2,.8,.3,1) na entrada e cubic-bezier(.4,0,1,1) na saída. Só opacidade e transform se movem, nunca a largura de uma tabela. Com prefers-reduced-motion tudo cai para 0ms e o skeleton troca a pulsação por fundo estático. A moldura de captura facial não pisca: a borda muda de cor em 160ms.",
+      bpTitle: "Breakpoints",
+      bps: [
+        { k: "sm < 600", v: "4 col · gutter 16 · margem 20 · alvo 44" },
+        { k: "md 600", v: "8 col · gutter 20 · margem 32 · gaveta" },
+        { k: "lg 900", v: "12 col · gutter 24 · sidebar fixa · alvo 40" },
+        { k: "xl 1280", v: "12 col · conteúdo travado em 1240" }
+      ],
+      bpNote: "O fluxo do titular é sempre uma coluna de no máximo 520px, centrada, inclusive no desktop. O painel usa a grade cheia. Zoom de 200% no navegador não pode esconder a ação primária, então ela fica no fluxo e não em barra fixa."
+    },
+    voice: {
+      kicker: "11 · Voz",
+      title: "Microcopy",
+      body: "Para o titular: segunda pessoa, frase curta, sem jargão de risco. Ele não sabe o que é score e não precisa saber. Para o analista: o termo técnico exato, sem rodeio. Botão nomeia o resultado. O português é escrito primeiro e o inglês é revisado contra ele, nunca traduzido por máquina.",
+      doLabel: "Escreva",
+      dontLabel: "Não escreva",
+      pairs: [
+        { good: "Enviar link ao titular", bad: "Submeter", note: "O rótulo diz o que acontece depois do clique." },
+        { good: "Aponte a câmera para o seu rosto e mantenha o celular parado.", bad: "Iniciando captura de prova de vida passiva.", note: "Instrução ao titular descreve o gesto, não a tecnologia." },
+        { good: "Não conseguimos confirmar sua identidade agora. Um atendente vai te chamar em até 2 minutos.", bad: "Verificação reprovada. Score 84.", note: "O titular nunca vê o score nem o sinal de fraude. O analista vê os dois." }
+      ]
+    },
+    dark: {
+      kicker: "12 · Dark mode",
+      title: "Painel em tema escuro",
+      body: "Só o painel admin tem tema escuro. O fluxo do titular fica claro, porque a captura facial depende de tela luminosa. No escuro, primary sobe para o passo 300 e os chips de risco trocam o fundo mantendo o matiz.",
+      pending: "pendentes",
+      auto: "auto-aprovação",
+      signal1: "Padrão de tela detectado · 2 rostos no quadro",
+      signal2: "Prova de vida concluída · dados consistentes",
+      risk84: "Risco 84",
+      risk12: "Risco 12",
+      open: "Abrir",
+      focus: "Foco visível",
+      searchLabel: "Buscar titular",
+      note: "No escuro o botão primário inverte: fundo 300, tinta 900. O chip de risco usa o matiz a 16–18% de alpha, borda a 40% e texto no passo claro, e mantém o ícone."
+    },
+    tokens: {
+      kicker: "13 · Tokens",
+      title: "CSS variables",
+      body: "O Brand Kit injeta apenas --brand-* e --radius-* no escopo do tenant. Tokens semânticos, de foco, de motion e de layout ficam no tema global."
+    },
+    wl: {
+      title: "Regras de white-label",
+      cols: [
+        { t: "A organização controla", b: "Logo claro e escuro, favicon, capa, cor primária, secundária e de destaque, uma das oito famílias tipográficas aprovadas, o conjunto de raio e o tom de voz." },
+        { t: "O sistema controla", b: "Cores de risco, sucesso, alerta e erro; escala tipográfica; espaçamento; altura de alvo de toque (44px no mobile); anel de foco; e a regra de que o ícone sempre acompanha a cor." },
+        { t: "Checagem de contraste", b: "Ao salvar, a cor primária é testada contra branco e contra o surface. Se falhar AA, o sistema propõe o passo mais próximo da escala gerada que passa e mostra a razão medida." }
+      ],
+      logoTitle: "Assets de marca que o tenant envia",
+      logoLight: "SVG ou PNG em 2x, fundo transparente, altura mínima de 24px, clear space de metade da altura do logo.",
+      logoDark: "Arquivo separado. Logo claro invertido é recusado quando cai abaixo de 3:1 sobre #0C1024.",
+      favicon: "SVG mais fallback PNG 32×32. Só o símbolo, sem assinatura.",
+      logoNote: "Tudo o que o titular vê carrega a marca da organização, com um discreto \"Verificação por Vero ID\" no rodapé. Os slots seguem vazios neste documento: solte os arquivos e o preview passa a usá-los."
+    }
+  }
+};
+
+class Component extends DCLogic {
+  state = {
+    lang: (() => {
+      try { return localStorage.getItem("veroid-ds-lang"); } catch (e) { return null; }
+    })()
+  };
+
+  currentLang() {
+    const fromState = this.state.lang;
+    if (fromState === "en" || fromState === "pt") return fromState;
+    const fromProp = this.props.defaultLang;
+    return fromProp === "pt" ? "pt" : "en";
+  }
+
+  toggleLang = () => {
+    const next = this.currentLang() === "en" ? "pt" : "en";
+    try { localStorage.setItem("veroid-ds-lang", next); } catch (e) {}
+    this.setState({ lang: next });
+  };
+
+  renderVals() {
+    const lang = this.currentLang();
+    return {
+      t: DICT[lang],
+      langCode: lang === "pt" ? "pt-BR" : "en",
+      toggleLang: this.toggleLang,
+      showDarkPanel: this.props.showDarkPanel ?? true,
+      showTokenCode: this.props.showTokenCode ?? true
+    };
+  }
+}
+
+</script>
+</body>
+</html>
